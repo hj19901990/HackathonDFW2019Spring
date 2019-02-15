@@ -5,12 +5,12 @@ void emotion_detection()
 {
 	frontal_face_detector detector = get_frontal_face_detector();
 	shape_predictor pose_model;
-	deserialize("D:\\HackDFW\\FaceRecognition\\shape_predictor_68_face_landmarks.dat") >> pose_model;
+	deserialize("..\\shape_predictor_68_face_landmarks.dat") >> pose_model;
 
 
-	cv::Ptr<SVM> svm = StatModel::load<SVM>("D:\\HackDFW\\FaceRecognition\\SVM_DATA.xml");
+	cv::Ptr<SVM> svm = StatModel::load<SVM>("..\\SVM_DATA.xml");
 
-	cv::Mat rst= cv::imread("D:\\HackDFW\\kid.jpg");
+	cv::Mat rst= cv::imread("..\\TestResources\\kid.jpg");
 
 	//pyramid_up(rst);
 	cv_image<bgr_pixel> cimg(rst);

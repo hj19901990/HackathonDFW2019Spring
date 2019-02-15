@@ -1,1 +1,8 @@
-﻿
+﻿  Moc'ing comunication.h...
+  source.cpp
+  comunication.cpp
+  faceanalysis.cpp
+  facedetection.cpp
+  main.cpp
+  moc_comunication.cpp
+  FaceRecognition.vcxproj -> D:\HackathonDFW2019Spring\HackathonDFW2019Spring\x64\Debug\FaceRecognition.exe

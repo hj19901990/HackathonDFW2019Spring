@@ -3,7 +3,7 @@
  
 void face_detection()
 {
-	cv::Mat cv_img = cv::imread("D:\\HackDFW\\man.bmp");
+	cv::Mat cv_img = cv::imread("..\\man.bmp");
 	cv::imshow("test", cv_img);
 	cv::cvtColor(cv_img, cv_img, CV_BGR2RGB);
 	matrix<dlib::rgb_pixel> img;
@@ -30,12 +30,12 @@ void face_recognition()
 	frontal_face_detector detector = get_frontal_face_detector();
 	
 	shape_predictor sp;
-	deserialize("D:\\HackDFW\\FaceRecognition\\shape_predictor_68_face_landmarks.dat") >> sp;
+	deserialize("..\\shape_predictor_68_face_landmarks.dat") >> sp;
 	anet_type net;
-	deserialize("D:\\HackDFW\\FaceRecognition\\dlib_face_recognition_resnet_model_v1.dat") >> net;
+	deserialize("..\\dlib_face_recognition_resnet_model_v1.dat") >> net;
 
 
-	cv::Mat cv_img = cv::imread("D:\\HackDFW\\two.bmp");
+	cv::Mat cv_img = cv::imread("..\\two.bmp");
 	//cv::imshow("test", cv_img);
 	cv::cvtColor(cv_img, cv_img, CV_BGR2RGB);
 	matrix<dlib::rgb_pixel> img;

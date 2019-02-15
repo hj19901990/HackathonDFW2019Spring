@@ -73,7 +73,7 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;WIN32;DLIB_JPEG_SUPPORT;DLIB_PNG_SUPPORT;DLIB_JPEG_STATIC;WIN64;QT_DLL;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
@@ -96,20 +96,20 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\dlib\all\source.cpp" />
-    <ClCompile Include="comunication.cpp" />
+    <ClCompile Include="mythread.cpp" />
     <ClCompile Include="faceanalysis.cpp" />
     <ClCompile Include="facedetection.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="comunication.h" />
+    <QtMoc Include="mythread.h" />
     <ClInclude Include="faceanalysis.h" />
     <ClInclude Include="facedetection.h" />
   </ItemGroup>

@@ -35,10 +35,10 @@
     <ClCompile Include="faceanalysis.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="comunication.cpp">
+    <ClCompile Include="..\dlib\all\source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\dlib\all\source.cpp">
+    <ClCompile Include="mythread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -51,7 +51,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="comunication.h">
+    <QtMoc Include="mythread.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
