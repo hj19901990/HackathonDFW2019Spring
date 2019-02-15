@@ -30,13 +30,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath>H:\dlib-19.16;H:\opencv3.2\opencv\build\include\opencv2;H:\opencv3.2\opencv\build\include\opencv;H:\opencv3.2\opencv\build\include;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\opencv3.2\opencv\build\x64\vc14\lib;H:\dlib-19.16\build\dlib\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IncludePath>H:\dlib-19.16;H:\opencv3.2\opencv\build\include;H:\opencv3.2\opencv\build\include\opencv;H:\opencv3.2\opencv\build\include\opencv2;$(IncludePath)</IncludePath>
-    <LibraryPath>H:\dlib-19.16\build\dlib\Release;H:\opencv3.2\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\lib\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
@@ -60,7 +60,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>H:\dlib-19.16\dlib\external\zlib;H:\dlib-19.16\dlib\external\libpng;H:\dlib-19.16\dlib\external\libjpeg;H:\dlib-19.16;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
@@ -69,11 +69,11 @@
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;opencv_world320d.lib;H:\dlib-19.16\build\dlib\Debug\dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;opencv_world320d.lib;$(ProjectDir)..\lib\Debug\dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
       <Define>UNICODE;WIN32;DLIB_JPEG_SUPPORT;DLIB_PNG_SUPPORT;DLIB_JPEG_STATIC;WIN64;QT_DLL;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>H:\dlib-19.16\dlib\external\zlib;H:\dlib-19.16\dlib\external\libpng;H:\dlib-19.16\dlib\external\libjpeg;H:\dlib-19.16;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore</IncludePath>
+      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
@@ -84,7 +84,7 @@
       <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>H:\dlib-19.16\dlib\external\zlib;H:\dlib-19.16\dlib\external\libpng;H:\dlib-19.16\dlib\external\libjpeg;H:\dlib-19.16;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
@@ -96,16 +96,16 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>H:\dlib-19.16\dlib\external\zlib;H:\dlib-19.16\dlib\external\libpng;H:\dlib-19.16\dlib\external\libjpeg;H:\dlib-19.16;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore</IncludePath>
+      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\dlib\all\source.cpp" />
     <ClCompile Include="comunication.cpp" />
     <ClCompile Include="faceanalysis.cpp" />
     <ClCompile Include="facedetection.cpp" />
-    <ClCompile Include="H:\dlib-19.16\dlib\all\source.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

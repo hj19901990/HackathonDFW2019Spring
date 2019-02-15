@@ -1,6 +1,6 @@
 #include "facedetection.h"
 
-
+ 
 void face_detection()
 {
 	cv::Mat cv_img = cv::imread("D:\\HackDFW\\man.bmp");
