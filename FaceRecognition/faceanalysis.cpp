@@ -53,3 +53,42 @@ void emotion_detection()
 	//Display it all on the screen  
 	imshow("emotion detection", rst);
 }
+
+
+CFaceAnalysis::CFaceAnalysis()              //initial different classify models
+{
+	detector = get_frontal_face_detector();    
+	deserialize("..\\shape_predictor_68_face_landmarks.dat") >> sp;
+	deserialize("..\\dlib_face_recognition_resnet_model_v1.dat") >> net;
+	svm = StatModel::load<SVM>("..\\SVM_DATA.xml");                          
+}
+
+int CFaceAnalysis::face_detection(cv::Mat src)
+{
+	matrix<dlib::rgb_pixel> img;
+	assign_image(img, cv_image<rgb_pixel>(src));   //convert cv format to dlib format
+	pyramid_up(img);                    //eliminate the size influences
+	std::vector<matrix<rgb_pixel>> faces;
+	for (auto face : detector(img))
+	{
+		auto shape = sp(img, face);
+		matrix<rgb_pixel> face_chip;
+		extract_image_chip(img, get_face_chip_details(shape, 150, 0.25), face_chip);
+		faces.push_back(move(face_chip));
+	}
+	if (faces.size() != 0)
+	{
+		
+		return XSUCESS;
+	}
+	else
+	{
+		return XFAIL;
+	}
+}
+
+
+int CFaceAnalysis::face_analysis()
+{
+	return 0;
+}

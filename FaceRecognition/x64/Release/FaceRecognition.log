@@ -1,1 +1,7 @@
-﻿
+﻿  Moc'ing mythread.h...
+  moc_mythread.cpp
+  faceanalysis.cpp
+  facedetection.cpp
+  main.cpp
+  mythread.cpp
+  FaceRecognition.vcxproj -> D:\HackathonDFW2019Spring\HackathonDFW2019Spring\x64\Release\FaceRecognition.exe

@@ -62,4 +62,3 @@ std::vector<matrix<rgb_pixel>> jitter_image(
 
 void face_detection();
 void face_recognition();
-void face_analysis();
