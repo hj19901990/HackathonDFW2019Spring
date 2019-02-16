@@ -60,18 +60,18 @@ std::vector<matrix<rgb_pixel>> jitter_image(
 
 
 
-class CFaceAnalysis
-{
-private:
-	frontal_face_detector detector;
-	shape_predictor sp;
-	anet_type net;
-	cv::Ptr<SVM> svm;
-public:
-	CFaceAnalysis();            //construct function
-	int face_detection(cv::Mat src);
-	int face_analysis(); 
-};
+//class CFaceAnalysis
+//{
+//private:
+//	frontal_face_detector detector;
+//	shape_predictor sp;
+//	anet_type net;
+//	cv::Ptr<SVM> svm;
+//public:
+//	CFaceAnalysis();            //construct function
+//	int face_detection(cv::Mat src);
+//	int face_analysis(); 
+//};
 
 
 void emotion_detection();

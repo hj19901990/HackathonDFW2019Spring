@@ -13,13 +13,13 @@
 #include <algorithm>
 
 
-#include <iostream>
-
 
 #include <iostream>
 #include <fstream>
 
 
+#define XSUCESS 1
+#define XFAIL 0
 
 
 using namespace std;
@@ -62,3 +62,7 @@ std::vector<matrix<rgb_pixel>> jitter_image(
 
 void face_detection();
 void face_recognition();
+
+int face_detection(matrix<dlib::rgb_pixel> _dlib_img, frontal_face_detector &_detector, std::vector<rectangle> &_faces);
+int face_recognition(matrix<dlib::rgb_pixel> _dlib_img, shape_predictor &sp, anet_type &net, std::vector<rectangle> &_faces);
+float euclidean_calculation(cv::Mat matrix_1,cv::Mat matrix_2);
