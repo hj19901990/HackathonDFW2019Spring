@@ -20,14 +20,15 @@ public slots:
 };
 
 
-class CFaceRecognition :public QThread
+class CFaceRecognitionThread :public QThread
 {
 	Q_OBJECT
 public:
+	CFaceRecognitionThread();
 	void run();
 	
 private:
-
+	cv::Mat img_to_proc;
 signals:
 
 public slots:
