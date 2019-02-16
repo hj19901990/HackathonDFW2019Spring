@@ -33,7 +33,7 @@
     <ClCompile Include="GIFImg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\dlib\all\source.cpp">
+    <ClCompile Include="Img_Prepro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GIFImg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Img_Prepro.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

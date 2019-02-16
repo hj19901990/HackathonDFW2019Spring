@@ -11,7 +11,7 @@
 #include <d2d1.h>
 #include <d2d1helper.h>
 #include <dwrite.h>
-
+#include "Img_Prepro.h"
 // DrawDevice class
 
 class DrawDevice
@@ -33,9 +33,11 @@ private:
 	ID2D1HwndRenderTarget *  m_pRenderTarget;
 	ID2D1Bitmap *            m_pBitmap;
 
-	ID2D1SolidColorBrush* m_pLightSlateGrayBrush;
-	ID2D1SolidColorBrush* m_pCornflowerBlueBrush;
-
+	ID2D1SolidColorBrush* m_pBlackBrush;
+	ID2D1StrokeStyle* m_pStrokeStyle;
+public:
+	bool	fact_detected;
+	cv::Rect	face_rect;
 public:
 	DrawDevice();
 	virtual ~DrawDevice();
@@ -55,6 +57,7 @@ public:
 
 	// Draw a 32 bit per pixel image of previously specified width and height to the associated hwnd
 	bool Draw(BYTE * pBits, unsigned long cbBits);
+	bool DrawLine(cv::Rect face_rst);
 };
 
 // Safe release for interfaces

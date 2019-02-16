@@ -9,6 +9,7 @@ ContentRendering::ContentRendering(HWND main_form, PictureBox^  stream, app::App
 	_udp_pkg_num = IMG_HGT/UDP_LINES;
 	_prev_time = 0;
 	_img_updated = false;
+	_img_processed = true;
 	_display_line_update = 0;
 	_prev_stamp = 0;
 	_hWndMain = main_form;
@@ -23,7 +24,7 @@ ContentRendering::ContentRendering(HWND main_form, PictureBox^  stream, app::App
 	_pDrawImg = NULL;
 	// Init Direct2D
 	D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &_pD2DFactory);
-	
+	_img_preprocessing = new Img_Prepro();
 	_etherComm = new CComm();
 	_video_request = new UDP_Income_Data();
 
@@ -41,8 +42,9 @@ ContentRendering::~ContentRendering() {
 	Sleep(50);
 
 	delete 		_etherComm;
-	delete _video_request;
+	delete		_video_request;
 	delete		_rgbDis;
+	delete		_img_preprocessing;
 	if (_pDrawImg) {
 		delete _pDrawImg;
 		_pDrawImg = NULL;
@@ -80,8 +82,9 @@ void ContentRendering::BindMCU() {
 
 	if (!_etherComm->Listen(_port))	// Binding MCU
 	{
-		String^	strErr = String::Format("Port {0} Binding failure", _port);
-		MessageBox::Show(strErr);
+		//String^	strErr = String::Format("Port {0} Binding failure", _port);
+		//MessageBox::Show(strErr);
+		std::cout << "Port Binding failure" << std::endl;
 		return;
 	}
 }
@@ -141,11 +144,11 @@ bool ContentRendering::CreateThreadFun() {
 
 	ThreadID = (int)_thread_listen ? 0 : 1;
 
-	/*if (!ThreadID) {
+	if (!ThreadID) {
 		
 		_thread_processing = CreateThread(NULL, 0, DataPreProcessingThread, this, 0, NULL);
 		ThreadID = (int)_thread_processing ? 0 : 1;
-	}*/
+	}
 
 	if (!ThreadID) {
 		_img_refreshed = CreateEvent(NULL, TRUE, FALSE, NULL);
@@ -169,13 +172,13 @@ DWORD WINAPI ContentRendering::ListenThread(LPVOID pParam)
 	return 0;
 }
 
-/*DWORD WINAPI ContentRendering::DataPreProcessingThread(LPVOID pParam)
+DWORD WINAPI ContentRendering::DataPreProcessingThread(LPVOID pParam)
 {
 	ContentRendering* ethernet_para = (ContentRendering *)pParam;
 	while (ethernet_para->_program_start)
-		ethernet_para->CopyImgToQueue();
+		ethernet_para->ImgProcessing();
 	return 0;
-}*/
+}
 
 DWORD WINAPI ContentRendering::DisplayThread(LPVOID pParam)
 {
@@ -190,9 +193,10 @@ DWORD WINAPI ContentRendering::ReceiveData_RaspPi() {//need to be replace by htt
 	int len = sizeof(_client);
 	int rst_udp_pkg_num = _udp_pkg_num;
 	std::vector<BYTE>	temp_line_buf;
+	
 	while (rst_udp_pkg_num--) {
 
-
+		//long pre_t = DateTime::Now.Ticks;
 		int SelectTiming = _etherComm->RecvfromTimeOutUDP(_etherComm->ListenSocket, 1, 50000);
 		switch (SelectTiming)
 		{
@@ -220,10 +224,14 @@ DWORD WINAPI ContentRendering::ReceiveData_RaspPi() {//need to be replace by htt
 				if (_udp_pkg_idx == rev_idx) {
 					temp_line_buf.insert(temp_line_buf.end(),buf + 8, buf + result);
 					//_process_image.push_back(std::vector<BYTE>(buf + 8, buf + result));
+					long cur_t = DateTime::Now.Ticks;
+
+					//std::cout << "Time:" << (cur_t - pre_t) / 10000.0 << std::endl;
 				}
 				else {
 					_udp_pkg_idx = 0;
 					rst_udp_pkg_num = _udp_pkg_num;
+					//std::cout << "idx failed to match" << std::endl;
 					break;
 				}
 				_udp_pkg_idx++;
@@ -240,28 +248,36 @@ DWORD WINAPI ContentRendering::ReceiveData_RaspPi() {//need to be replace by htt
 	};
 
 	if (rst_udp_pkg_num < 0) {
+		
 		copyToBuffer(temp_line_buf);
 		_img_updated = true;
 
-		#ifdef MULTI_THREADS_DEBUG
-		std::cout << "Line #:" << _display_line_update << std::endl;
-		#endif // MULTI_THREADS_DEBUG
+		//#ifdef MULTI_THREADS_DEBUG
+		//std::cout << "Line #:" << _display_line_update << std::endl;
+		//#endif // MULTI_THREADS_DEBUG
 
 		WaitForSingleObject(_img_refreshed, 100);
 		ResetEvent(_img_refreshed);
 		
 		_buf_image.clear();
 		_udp_pkg_idx = 0;
+		
 	}
 	return 0;
 	
 }
 void ContentRendering::copyToBuffer(std::vector<BYTE>& src) {
+	if (_img_processed) {
+		_img_dis = cv::Mat(_img_height, _img_width, CV_8UC3, src.data());
+		_img_processed = false;
+	}
+	
 	size_t width_bits = _img_chn*_img_width;
 	std::vector<BYTE> temp_line(width_bits);
 	for (int ii=0, i = _img_height-1; i >=0; i--,ii++) {
 	//for (int i = 0; i < _img_height; i++) {
 		for (int j = 0,k=0; j < width_bits; j += 3,k++) {
+
 			temp_line[j] = src[j + width_bits*i];
 			temp_line[j+1] = src[j+1 + width_bits*i];
 			temp_line[j+2] = src[j+2 + width_bits*i];
@@ -271,6 +287,10 @@ void ContentRendering::copyToBuffer(std::vector<BYTE>& src) {
 		}
 		_buf_image.push_back(temp_line);	
 	}
+	//cv::imwrite("filtered.bmp", _img_dis);
+	//cv::imshow("Video_stream", _img_dis);
+	//cv::waitKey(10);
+	//cv::destroyAllWindows();
 }
 bool ContentRendering::AssignDrawWindow(HWND hWndImg) {
 
@@ -299,27 +319,19 @@ bool ContentRendering::AssignDrawWindow(HWND hWndImg) {
 	return result;
 }
 
-/*void ContentRendering::CopyImgToQueue() {
-	if (_line_filled) {
-				_display_Frame[(int)_display_idx].push_back(_buf_processing);
-				_saving_Frame[(int)_saving_idx].push_back(_buf_processing);
-#ifdef MULTI_THREADS_DEBUG
-				Int64 _cur_time = (DateTime::Now.Ticks - init_time) * 100;
-				std::cout << "Data Preprocessing:" << _cur_time << std::endl;
-#endif
-				_display_line_update++;
-				_line_cnt++;
-				if (_line_cnt == _img_height) {
-					_line_cnt = 0;
-					_saving_idx = !_saving_idx;
-					::PostMessage(_hWndMain, WM_SAVE, (WPARAM)_saving_Frame, NULL);
-				}
-			}
-		
-		_buf_prevs_line.swap(_buf_processing);
-		_line_filled = false;
-		SetEvent(_processing_done);
-}*/
+void ContentRendering::ImgProcessing() {
+	if (!_img_processed) {
+		std::vector<cv::Rect> face_rst = _img_preprocessing->FaceDetection(_img_dis);
+		if (face_rst.size()) {
+			_pDrawImg->face_rect = face_rst[0];
+			_pDrawImg->fact_detected = true;
+		}
+		else
+			_pDrawImg->fact_detected = false;
+		_img_processed = true;
+	}
+			
+}
 
 void ContentRendering::UpdataScreen() {
 	
@@ -339,17 +351,7 @@ void ContentRendering::UpdataScreen() {
 }
 
 
-void ContentRendering::ResizeImg(PictureBox^  stream, Panel^ frame, bool orginal_img) {
-	if (orginal_img) {
-		stream->Location = System::Drawing::Point(1, 1);
-		stream->Size = System::Drawing::Size(_img_width, frame->Height - 10);
-	}
-	else {
-		stream->Location = System::Drawing::Point(1, 1);
-		stream->Size = System::Drawing::Size(frame->Width - 10, frame->Height - 10);
-	}
-	//_pDrawImg->Resize(orginal_img);
-}
+
 const RGBQUAD* ContentRendering::GetCapturedBufferRGB() {
 	//Int64 init_time = DateTime::Now.Ticks;
 		for (int i = 0; i < _img_height; i++) {

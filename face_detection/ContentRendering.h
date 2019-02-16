@@ -2,6 +2,9 @@
 #include "app\AppConfig.h"
 #include "DrawDevice.h"
 #include "Com.h"
+#include "Img_Prepro.h"
+
+
 
 #define WM_SAVE			WM_USER+1
 #define IMG_WID			640
@@ -62,7 +65,6 @@ public:
 	//void SaveToImage(Bitmap^ saveBmp);
 	void CaptureImage();
 	void StopCapturing();
-	void ResizeImg(PictureBox^  stream, Panel^ frame, bool orginal_img);
 	void DrawBox(System::Windows::Forms::PaintEventArgs^  e);
 
 	bool CreateThreadFun();
@@ -71,9 +73,10 @@ public:
 private:
 	bool ApplyVideoRequest();
 	void copyToBuffer(std::vector<BYTE>& src);
+	void ImgProcessing();
 private:
 	static DWORD WINAPI ListenThread(LPVOID pParam);
-	//static DWORD WINAPI DataPreProcessingThread(LPVOID pParam);
+	static DWORD WINAPI DataPreProcessingThread(LPVOID pParam);
 	static DWORD WINAPI DisplayThread(LPVOID pParam);
 	DWORD WINAPI ReceiveData_RaspPi();
 	//void ShowMessage(UINT nMsgID, UINT nType);
@@ -101,8 +104,9 @@ private:
 	int _display_line_update;
 	std::vector<std::vector<BYTE>>	_buf_image;
 	std::vector<std::vector<BYTE>>	_process_image;
-
+	cv::Mat _img_dis;
 	bool		 _img_updated;
+	bool		_img_processed;
 	unsigned int _img_cnt;
 	Int64		_cur_time;
 	unsigned int _prev_time;
@@ -111,6 +115,7 @@ private:
 	HWND          _hWndImg;
 	DrawDevice*   _pDrawImg;
 	ID2D1Factory* _pD2DFactory;
+	Img_Prepro*	_img_preprocessing;
 	
 public:
 	sockaddr_in					  _client;			// receiving data address

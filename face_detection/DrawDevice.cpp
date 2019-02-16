@@ -29,7 +29,8 @@ DrawDevice::DrawDevice() :
 	m_rotation(0),
 	m_pD2DFactory(NULL),
 	m_pRenderTarget(NULL),
-	m_pBitmap(0)
+	m_pBitmap(0),
+	fact_detected(false)
 {
 }
 
@@ -91,6 +92,25 @@ HRESULT DrawDevice::EnsureResources()
 			return hr;
 		}
 
+		float dashes[] = { 1.0f, 2.0f, 2.0f, 3.0f, 2.0f, 2.0f };
+		hr = m_pD2DFactory->CreateStrokeStyle(
+			D2D1::StrokeStyleProperties(
+				D2D1_CAP_STYLE_FLAT,
+				D2D1_CAP_STYLE_FLAT,
+				D2D1_CAP_STYLE_ROUND,
+				D2D1_LINE_JOIN_MITER,
+				10.0f,
+				D2D1_DASH_STYLE_CUSTOM,
+				0.0f),
+			dashes,
+			ARRAYSIZE(dashes),
+			&m_pStrokeStyle
+		);
+
+		hr = m_pRenderTarget->CreateSolidColorBrush(
+			D2D1::ColorF(D2D1::ColorF::Black, 1.0f),
+			&m_pBlackBrush
+		);
 		//Rotate the view
 		m_imageCenter = D2D1::Point2F(
 			m_sourceWidth / 2.0f, m_sourceHeight / 2.0f
@@ -224,6 +244,17 @@ bool DrawDevice::Draw(BYTE * pBits, unsigned long cbBits)
 	FLOAT top;
 	FLOAT right;
 	FLOAT bottom;*/
+
+	if (fact_detected) {
+		D2D1_ROUNDED_RECT roundedRect = D2D1::RoundedRect(
+			D2D1::RectF(face_rect.x, face_rect.y, face_rect.x+face_rect.width, face_rect.y + face_rect.height),
+			10.f,
+			10.f
+		);
+		m_pRenderTarget->DrawRoundedRectangle(roundedRect, m_pBlackBrush, 5.f, m_pStrokeStyle);
+	}
+
+
 	D2D1_SIZE_F scaleXY = D2D1::SizeF(1.0f, -1.0f);
 	D2D1::Matrix3x2F scaling = D2D1::Matrix3x2F::Scale(
 		scaleXY, m_imageCenter
@@ -243,3 +274,4 @@ bool DrawDevice::Draw(BYTE * pBits, unsigned long cbBits)
 
 	return SUCCEEDED(hr);
 }
+

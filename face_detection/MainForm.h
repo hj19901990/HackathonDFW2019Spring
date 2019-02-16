@@ -195,6 +195,14 @@ namespace face_detection {
 		_appConfig->Load("Config\\HACKDFW_cfg.xml");
 		_animatedGif = gcnew GIFImg("Config//facescan.gif");
 		_contents = new ContentRendering((HWND)this->Handle.ToPointer(), pictureBox1, _appConfig);
+
+		//test
+		richTextBox1->Multiline = true;
+		richTextBox1->ForeColor = Color::Blue;
+		richTextBox1->Font = gcnew System::Drawing::Font("Georgia", 16);
+		richTextBox1->Clear();
+		richTextBox1->Text += "Name:" + Environment::NewLine;
+		richTextBox1->Text += "He looks upset!" + Environment::NewLine;
 	}
 private: System::Void toolStripStart_Click(System::Object^  sender, System::EventArgs^  e) {
 	//_contents->_program_start = true;
