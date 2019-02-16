@@ -8,7 +8,7 @@ typedef struct {
 
 	int name_len;
 
-	char *name;
+	char name[50];
 
 	int age;
 
@@ -20,7 +20,7 @@ typedef struct {
 
 }Individual_Info;
 
-#define PACKET_TYPE_PIC 0xA0
+#define PACKET_TYPE_PIC 0xA0/////
 #define PACKET_TYPE_INDIVIDUAL_INFO 0xA1
 typedef struct {
 
@@ -53,7 +53,7 @@ typedef struct {
 	*/
 	int flag;
 
-	Individual_Info *individual_info;
+	Individual_Info individual_info;
 }Individual_Info_Header;
 
 class Pic {

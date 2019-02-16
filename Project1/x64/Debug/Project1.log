@@ -1,9 +1,9 @@
 ﻿  CloudClient.cpp
-c:\users\wii\source\repos\project3\project1\cloudclient.cpp(84): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+d:\hackathondfw2019spring2\project1\cloudclient.cpp(84): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(338): note: see declaration of 'strncpy'
 c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.14.26428\include\xutility(2483): warning C4996: 'std::copy::_Unchecked_iterators::_Deprecate': Call to 'std::copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
   c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.14.26428\include\xutility(2483): note: see declaration of 'std::copy::_Unchecked_iterators::_Deprecate'
-  c:\users\wii\source\repos\project3\project1\protocols.h(79): note: see reference to function template instantiation '_OutIt *std::copy<char*,char*>(_InIt,_InIt,_OutIt)' being compiled
+  d:\hackathondfw2019spring2\project1\protocols.h(79): note: see reference to function template instantiation '_OutIt *std::copy<char*,char*>(_InIt,_InIt,_OutIt)' being compiled
           with
           [
               _OutIt=char *,
@@ -11,35 +11,35 @@ c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.
           ]
   SecureSocket.cpp
   Socket.cpp
-c:\users\wii\source\repos\project3\project1\socket.cpp(110): warning C4267: '=': conversion from 'size_t' to 'long', possible loss of data
-c:\users\wii\source\repos\project3\project1\socket.cpp(119): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
-c:\users\wii\source\repos\project3\project1\socket.cpp(155): warning C4267: '=': conversion from 'size_t' to 'long', possible loss of data
-c:\users\wii\source\repos\project3\project1\socket.cpp(169): warning C4244: '=': conversion from 'const ASocket::Socket' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\socket.cpp(110): warning C4267: '=': conversion from 'size_t' to 'long', possible loss of data
+d:\hackathondfw2019spring2\project1\socket.cpp(119): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\socket.cpp(155): warning C4267: '=': conversion from 'size_t' to 'long', possible loss of data
+d:\hackathondfw2019spring2\project1\socket.cpp(169): warning C4244: '=': conversion from 'const ASocket::Socket' to 'int', possible loss of data
   Source.cpp
-c:\users\wii\source\repos\project3\project1\source.cpp(14): warning C4309: '=': truncation of constant value
+d:\hackathondfw2019spring2\project1\source.cpp(14): warning C4309: '=': truncation of constant value
 c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.14.26428\include\xutility(2483): warning C4996: 'std::copy::_Unchecked_iterators::_Deprecate': Call to 'std::copy' with parameters that may be unsafe - this call relies on the caller to check that the passed values are correct. To disable this warning, use -D_SCL_SECURE_NO_WARNINGS. See documentation on how to use Visual C++ 'Checked Iterators'
   c:\program files (x86)\microsoft visual studio\2017\enterprise\vc\tools\msvc\14.14.26428\include\xutility(2483): note: see declaration of 'std::copy::_Unchecked_iterators::_Deprecate'
-  c:\users\wii\source\repos\project3\project1\protocols.h(79): note: see reference to function template instantiation '_OutIt *std::copy<char*,char*>(_InIt,_InIt,_OutIt)' being compiled
+  d:\hackathondfw2019spring2\project1\protocols.h(79): note: see reference to function template instantiation '_OutIt *std::copy<char*,char*>(_InIt,_InIt,_OutIt)' being compiled
           with
           [
               _OutIt=char *,
               _InIt=char *
           ]
   TCPClient.cpp
-c:\users\wii\source\repos\project3\project1\tcpclient.cpp(274): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\wii\source\repos\project3\project1\tcpclient.cpp(323): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpclient.cpp(274): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpclient.cpp(323): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   TCPServer.cpp
-c:\users\wii\source\repos\project3\project1\tcpserver.cpp(272): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+d:\hackathondfw2019spring2\project1\tcpserver.cpp(272): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\um\winsock2.h(1848): note: see declaration of 'inet_ntoa'
-c:\users\wii\source\repos\project3\project1\tcpserver.cpp(358): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\wii\source\repos\project3\project1\tcpserver.cpp(399): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpserver.cpp(358): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpserver.cpp(399): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   TCPSSLClient.cpp
-c:\users\wii\source\repos\project3\project1\tcpsslclient.cpp(104): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
-c:\users\wii\source\repos\project3\project1\tcpsslclient.cpp(167): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\wii\source\repos\project3\project1\tcpsslclient.cpp(224): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpsslclient.cpp(104): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpsslclient.cpp(167): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpsslclient.cpp(224): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   TCPSSLServer.cpp
-c:\users\wii\source\repos\project3\project1\tcpsslserver.cpp(106): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
-c:\users\wii\source\repos\project3\project1\tcpsslserver.cpp(168): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-c:\users\wii\source\repos\project3\project1\tcpsslserver.cpp(198): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpsslserver.cpp(106): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpsslserver.cpp(168): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring2\project1\tcpsslserver.cpp(198): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Generating Code...
-  Project1.vcxproj -> C:\Users\Wii\source\repos\Project3\x64\Debug\OpenSSLClient.exe
+  Project1.vcxproj -> D:\HackathonDFW2019Spring2\x64\Debug\OpenSSLClient.exe
