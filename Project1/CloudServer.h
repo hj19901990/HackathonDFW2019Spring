@@ -24,13 +24,15 @@ private:
 
 	std::thread recv_thread;
 
-	void(*callback)(Pic *);
-
-public:
+	void(*callback)(int timestamp, Pic *pic);
 
 	void run();
 
-	CloudServer(void(*set_callback)(Pic*));
+public:
+	
+	void send_info(int timestampt, Individual info);
+
+	CloudServer(void(*set_callback)(int timestamp, Pic *pic));
 	~CloudServer();
 };
 

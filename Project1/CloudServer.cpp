@@ -10,7 +10,7 @@ using namespace std;
 
 #include <thread>
 
-CloudServer::CloudServer(void(*set_callback)(Pic *)) :
+CloudServer::CloudServer(void(*set_callback)(int timestamp, Pic *pic)) :
 	LogPrinter([](const std::string& strLogMsg) { std::cout << strLogMsg << std::endl; }),
 	recv_thread(&CloudServer::run, this),
 	callback(set_callback)
@@ -65,11 +65,32 @@ void CloudServer::run() {
 
 			Pic cur_pic(new_pt_header);
 	
-			this->callback(&cur_pic);
+			this->callback(new_pt_header->header.timestamp, &cur_pic);
 
 		}
 	}
 	
+}
+
+void CloudServer::send_info(int timestampt, Individual info) {
+
+	Individual_Info_Header header;
+	
+	header.header.cmdType = PACKET_TYPE_INDIVIDUAL_INFO;
+	header.header.timestamp = timestampt;
+
+	header.individual_info.id = info.id;
+	header.individual_info.age = info.age;
+	header.individual_info.gender = info.gender;
+
+	header.individual_info.name_len = info.name.length();
+
+	const char *pname = info.name.c_str();
+
+	std::copy(pname, pname + info.name.length(), header.individual_info.name);
+
+	....................
+
 }
 
 CloudServer::~CloudServer()

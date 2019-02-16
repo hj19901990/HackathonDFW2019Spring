@@ -8,7 +8,7 @@ typedef struct {
 
 	int name_len;
 
-	char *name;
+	char name[50];
 
 	int age;
 
@@ -53,7 +53,8 @@ typedef struct {
 	*/
 	int flag;
 
-	Individual_Info *individual_info;
+	Individual_Info individual_info;
+
 }Individual_Info_Header;
 
 class Pic {
@@ -87,7 +88,7 @@ public:
 
 class Individual {
 
-private:
+public:
 	int id;
 
 	std::string name;
