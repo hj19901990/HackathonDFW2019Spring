@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_CComunicationThread_t {
-    QByteArrayData data[8];
-    char stringdata0[86];
+    QByteArrayData data[10];
+    char stringdata0[110];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,12 +38,14 @@ QT_MOC_LITERAL(3, 30, 7), // "cv::Mat"
 QT_MOC_LITERAL(4, 38, 9), // "input_img"
 QT_MOC_LITERAL(5, 48, 9), // "timestamp"
 QT_MOC_LITERAL(6, 58, 19), // "recieve_thread_stat"
-QT_MOC_LITERAL(7, 78, 7) // "is_free"
+QT_MOC_LITERAL(7, 78, 7), // "is_free"
+QT_MOC_LITERAL(8, 86, 15), // "Individual_Info"
+QT_MOC_LITERAL(9, 102, 7) // "package"
 
     },
     "CComunicationThread\0send_img\0\0cv::Mat\0"
     "input_img\0timestamp\0recieve_thread_stat\0"
-    "is_free"
+    "is_free\0Individual_Info\0package"
 };
 #undef QT_MOC_LITERAL
 
@@ -64,13 +66,13 @@ static const uint qt_meta_data_CComunicationThread[] = {
        1,    2,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    1,   29,    2, 0x0a /* Public */,
+       6,    2,   29,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3, QMetaType::Int,    4,    5,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::Bool,    7,
+    QMetaType::Void, QMetaType::Bool, 0x80000000 | 8,    7,    9,
 
        0        // eod
 };
@@ -82,7 +84,7 @@ void CComunicationThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->send_img((*reinterpret_cast< cv::Mat(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 1: _t->recieve_thread_stat((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 1: _t->recieve_thread_stat((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< Individual_Info(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -141,8 +143,8 @@ void CComunicationThread::send_img(cv::Mat _t1, int _t2)
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 struct qt_meta_stringdata_CFaceRecognitionThread_t {
-    QByteArrayData data[8];
-    char stringdata0[92];
+    QByteArrayData data[10];
+    char stringdata0[113];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -155,15 +157,17 @@ QT_MOC_LITERAL(0, 0, 22), // "CFaceRecognitionThread"
 QT_MOC_LITERAL(1, 23, 16), // "send_thread_stat"
 QT_MOC_LITERAL(2, 40, 0), // ""
 QT_MOC_LITERAL(3, 41, 7), // "is_free"
-QT_MOC_LITERAL(4, 49, 11), // "recieve_img"
-QT_MOC_LITERAL(5, 61, 7), // "cv::Mat"
-QT_MOC_LITERAL(6, 69, 12), // "recieved_img"
-QT_MOC_LITERAL(7, 82, 9) // "timestamp"
+QT_MOC_LITERAL(4, 49, 15), // "Individual_Info"
+QT_MOC_LITERAL(5, 65, 4), // "info"
+QT_MOC_LITERAL(6, 70, 11), // "recieve_img"
+QT_MOC_LITERAL(7, 82, 7), // "cv::Mat"
+QT_MOC_LITERAL(8, 90, 12), // "recieved_img"
+QT_MOC_LITERAL(9, 103, 9) // "timestamp"
 
     },
     "CFaceRecognitionThread\0send_thread_stat\0"
-    "\0is_free\0recieve_img\0cv::Mat\0recieved_img\0"
-    "timestamp"
+    "\0is_free\0Individual_Info\0info\0recieve_img\0"
+    "cv::Mat\0recieved_img\0timestamp"
 };
 #undef QT_MOC_LITERAL
 
@@ -181,16 +185,16 @@ static const uint qt_meta_data_CFaceRecognitionThread[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   24,    2, 0x06 /* Public */,
+       1,    2,   24,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    2,   27,    2, 0x0a /* Public */,
+       6,    2,   29,    2, 0x0a /* Public */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, QMetaType::Bool, 0x80000000 | 4,    3,    5,
 
  // slots: parameters
-    QMetaType::Void, 0x80000000 | 5, QMetaType::Int,    6,    7,
+    QMetaType::Void, 0x80000000 | 7, QMetaType::Int,    8,    9,
 
        0        // eod
 };
@@ -201,7 +205,7 @@ void CFaceRecognitionThread::qt_static_metacall(QObject *_o, QMetaObject::Call _
         CFaceRecognitionThread *_t = static_cast<CFaceRecognitionThread *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->send_thread_stat((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 0: _t->send_thread_stat((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< Individual_Info(*)>(_a[2]))); break;
         case 1: _t->recieve_img((*reinterpret_cast< cv::Mat(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
@@ -209,7 +213,7 @@ void CFaceRecognitionThread::qt_static_metacall(QObject *_o, QMetaObject::Call _
         int *result = reinterpret_cast<int *>(_a[0]);
         void **func = reinterpret_cast<void **>(_a[1]);
         {
-            typedef void (CFaceRecognitionThread::*_t)(bool );
+            typedef void (CFaceRecognitionThread::*_t)(bool , Individual_Info );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&CFaceRecognitionThread::send_thread_stat)) {
                 *result = 0;
                 return;
@@ -255,9 +259,9 @@ int CFaceRecognitionThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a
 }
 
 // SIGNAL 0
-void CFaceRecognitionThread::send_thread_stat(bool _t1)
+void CFaceRecognitionThread::send_thread_stat(bool _t1, Individual_Info _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

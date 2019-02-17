@@ -85,7 +85,7 @@
       <PreprocessorDefinitions>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\HackathonDFW2019Spring\HackathonDFW2019Spring\StaticLib1;$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
@@ -97,7 +97,7 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
+      <IncludePath>D:\HackathonDFW2019Spring\HackathonDFW2019Spring\StaticLib1;$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>

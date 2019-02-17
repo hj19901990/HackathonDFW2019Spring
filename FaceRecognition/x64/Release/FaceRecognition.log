@@ -1,22 +1,9 @@
-﻿  Moc'ing mythread.h...
-  source.cpp
-  moc_mythread.cpp
-  faceanalysis.cpp
-  facedetection.cpp
-  main.cpp
-  mythread.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(24): warning C4005: 'XSUCESS': macro redefinition (compiling source file GeneratedFiles\Release\moc_mythread.cpp)
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(20): note: see previous definition of 'XSUCESS' (compiling source file GeneratedFiles\Release\moc_mythread.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(25): warning C4005: 'XFAIL': macro redefinition (compiling source file GeneratedFiles\Release\moc_mythread.cpp)
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(19): note: see previous definition of 'XFAIL' (compiling source file GeneratedFiles\Release\moc_mythread.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(24): warning C4005: 'XSUCESS': macro redefinition (compiling source file main.cpp)
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(20): note: see previous definition of 'XSUCESS' (compiling source file main.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(25): warning C4005: 'XFAIL': macro redefinition (compiling source file main.cpp)
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(19): note: see previous definition of 'XFAIL' (compiling source file main.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\mythread.h(8): fatal error C1083: Cannot open include file: 'CloudServer.h': No such file or directory (compiling source file GeneratedFiles\Release\moc_mythread.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\mythread.h(8): fatal error C1083: Cannot open include file: 'CloudServer.h': No such file or directory (compiling source file main.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(24): warning C4005: 'XSUCESS': macro redefinition (compiling source file mythread.cpp)
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(20): note: see previous definition of 'XSUCESS' (compiling source file mythread.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(25): warning C4005: 'XFAIL': macro redefinition (compiling source file mythread.cpp)
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(19): note: see previous definition of 'XFAIL' (compiling source file mythread.cpp)
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\mythread.h(8): fatal error C1083: Cannot open include file: 'CloudServer.h': No such file or directory (compiling source file mythread.cpp)
+﻿  mythread.cpp
+d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(24): warning C4005: 'XSUCESS': macro redefinition
+  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(20): note: see previous definition of 'XSUCESS'
+d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(25): warning C4005: 'XFAIL': macro redefinition
+  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(19): note: see previous definition of 'XFAIL'
+  StaticLib1.lib(CloudServer.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
+  Generating code
+  Finished generating code
+  FaceRecognition.vcxproj -> D:\HackathonDFW2019Spring\HackathonDFW2019Spring\x64\Release\FaceRecognition.exe

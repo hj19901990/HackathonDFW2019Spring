@@ -12,9 +12,9 @@
 #include <dlib/string.h>
 #include <dlib/image_io.h>
 #include <algorithm>
+#include "CloudServer.h"
 
-
-
+#include<io.h>
 #include <iostream>
 #include <fstream>
 #include <experimental/filesystem>
@@ -68,8 +68,9 @@ void face_detection();
 void face_recognition();
 
 int face_detection(matrix<dlib::rgb_pixel>& _dlib_img, frontal_face_detector _detector, std::vector<rectangle> &_faces);
-int face_recognition(matrix<dlib::rgb_pixel>& _dlib_img, shape_predictor &sp, anet_type &net, std::vector<rectangle> &_faces);
+int face_recognition(matrix<dlib::rgb_pixel>& _dlib_img, shape_predictor &sp, anet_type &net, std::vector<rectangle> &_faces, Individual_Info &_detect_res);
 int face_emotion(matrix<dlib::rgb_pixel>& _dlib_img, cv::Mat & _cv_img, shape_predictor &_sp, cv::Ptr<SVM>& _svm, std::vector<rectangle> &_faces);
 void search_database(std::vector<std::string> &data_dir);
 void Wchar_tToString(std::string& szDst, wchar_t *wchar);
 float euclidean_calculation(cv::Mat matrix_1,cv::Mat matrix_2);
+void getAllFiles(string path, std::vector<string>& files, string format);

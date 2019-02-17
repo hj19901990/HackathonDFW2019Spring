@@ -35,9 +35,9 @@ void face_recognition()
 	deserialize("..\\dlib_face_recognition_resnet_model_v1.dat") >> net;
 
 
-	cv::Mat cv_img = cv::imread("..\\TestResources\\two.bmp");
+	cv::Mat cv_img = cv::imread("D:\\jinfeng.bmp");
 	//cv::imshow("test", cv_img);
-	cv::cvtColor(cv_img, cv_img, CV_BGR2RGB);
+	//cv::cvtColor(cv_img, cv_img, CV_BGR2RGB);
 	matrix<dlib::rgb_pixel> img;
 	assign_image(img, cv_image<rgb_pixel>(cv_img));
 	/*pyramid_up(img);
@@ -98,6 +98,15 @@ void face_recognition()
 	}
 
 	//cout << "face descriptor for one face: " << trans(face_descriptors[0]) << endl;
+	fstream outfile("D:\\jinfeng.txt");
+	//outfile.open("D:\\01.txt", std::ios::app);
+	cv::Mat features_matrix = dlib::toMat(face_descriptors[0]);
+	for (int i = 0; i < features_matrix.rows; i++)
+	{
+		outfile << *((float*)features_matrix.data+i) << endl;
+	}
+	outfile.close();
+
 	cout << "face descriptor for one face: " << face_descriptors[0] << endl;
 	//matrix<float, 0, 1> face_descriptor = mean(mat(net(jitter_image(faces[0]))));
 	//cout << "jittered face descriptor for one face: " << trans(face_descriptor) << endl;
@@ -152,7 +161,7 @@ int face_detection(matrix<dlib::rgb_pixel> &_dlib_img, frontal_face_detector _de
 	//cv::waitKey(0);
 }
 
-int face_recognition(matrix<dlib::rgb_pixel>& _dlib_img,shape_predictor &sp, anet_type &net, std::vector<rectangle> &_faces)
+int face_recognition(matrix<dlib::rgb_pixel>& _dlib_img,shape_predictor &sp, anet_type &net, std::vector<rectangle> &_faces,Individual_Info &_detect_res)
 {
 	std::vector<matrix<rgb_pixel>> face_chips;
 	for (auto face : _faces)
@@ -196,32 +205,102 @@ int face_recognition(matrix<dlib::rgb_pixel>& _dlib_img,shape_predictor &sp, ane
 	}
 	
 	//find the best result from database
-	//for (size_t i = 0; i < num_clusters; i++)
-	//{
-	//	//convert matrix to Mat
-	//	cv::Mat features_matrix = dlib::toMat(face_descriptors[i]);
-	//	if (euclidean_calculation(feature_matrix, database[0]) < 10)
-	//	{
-	//		ofstream output(".\\test.txt", ios::out | ios::binary);
-	//		if (!output)
-	//		{
-	//			cerr << "Open output file error!" << endl;
-	//			exit(-1);
-	//		}
-
-	//		output.write((char *)A, sizeof(A));
-	//		for (i = 0; i < 3; i++)
-	//		{
-	//			for (j = 0; j < 10; j++)
-	//			{
-	//				//output.write ( ( char * ) & A [ i ][ j ], sizeof( A [ i ][ j ] ) );
-	//			}
-	//		}
-	//	}
-	//}
 	
-	cout << "face descriptor for one face: " << trans(face_descriptors[0]) << endl;
-	return XSUCESS;
+		//convert matrix to Mat
+		cv::Mat features_matrix = dlib::toMat(face_descriptors[0]);
+		std::vector<std::string> data_path;
+		search_database(data_path);
+		getAllFiles("..\\database", data_path,"txt");
+		std::vector<std::vector<string>> data_base;
+		for (auto dir : data_path)
+		{
+			//read database
+			ifstream infile(dir);
+			int row_count = 0;
+			//Individual temp_indiv;
+			std::vector<string> each_people(135); 
+			//data_in_database[86];
+			while (!infile.eof())            
+			{
+				infile >> each_people[row_count];
+				row_count++;
+			}
+			data_base.push_back(each_people);
+		}
+		std::vector<float> match;
+		for (size_t i = 0; i < data_base.size(); i++)
+		{
+			cv::Mat features_database(128, 1, CV_32FC1);
+			for (size_t j = 6; j < 134; j++)
+			{
+				*((float *)features_database.data + j - 6) = std::stof(data_base[i][j]);
+			}
+			match.push_back(euclidean_calculation(features_matrix, features_database));
+		}
+		int number = 0;
+		float mini = 1000000000;
+		for (size_t i = 0; i < match.size(); i++)
+		{
+			if (mini > match[i])
+			{
+				mini = match[i];
+				number = i;
+			}
+		}
+		if (mini < 10)
+		{
+			strcpy(&_detect_res.name[0], data_base[number][2].c_str());
+			_detect_res.name_len = data_base[number][2].length();
+			_detect_res.age = atoi(data_base[number][3].c_str());
+			//_detect_res.id = atoi(data_base[number][0].c_str());
+			//data_in_database[2].copy(*detect_res.name, 5, 0);
+			/*detect_res.name = memcpy(data_in_database[2].c_str());*/
+			return atoi(data_base[number][0].c_str());
+		}
+		else
+		{
+			return -2;
+		}
+
+			//for (int i = 6; i < 86; i++)
+			//{
+			//	*((float *)features_database.data + i - 6) = std::stof(data_in_database[i]);
+			//}
+			//if (euclidean_calculation(features_matrix, features_database) < 10)     //threshold of recognition
+			//{
+			//	strcpy(&_detect_res.name[0], data_in_database[2].c_str());
+			//	_detect_res.name_len = data_in_database[2].length();
+			//	_detect_res.age = atoi(data_in_database[3].c_str());
+			//	//data_in_database[2].copy(*detect_res.name, 5, 0);
+			//	/*detect_res.name = memcpy(data_in_database[2].c_str());*/
+			//	return atoi(data_in_database[0].c_str());
+			//}
+			
+		
+
+
+		//if (euclidean_calculation(features_matrix, database[0]) < 10)
+		//{
+		//	ofstream output(".\\test.txt", ios::out | ios::binary);
+		//	if (!output)
+		//	{
+		//		cerr << "Open output file error!" << endl;
+		//		exit(-1);
+		//	}
+
+		//	output.write((char *)A, sizeof(A));
+		//	for (i = 0; i < 3; i++)
+		//	{
+		//		for (j = 0; j < 10; j++)
+		//		{
+		//			//output.write ( ( char * ) & A [ i ][ j ], sizeof( A [ i ][ j ] ) );
+		//		}
+		//	}
+		//}
+	
+	
+	//cout << "face descriptor for one face: " << trans(face_descriptors[0]) << endl;
+	//return XSUCESS;
 }
 
 int face_emotion(matrix<dlib::rgb_pixel>& _dlib_img, cv::Mat & _cv_img, shape_predictor &_sp, cv::Ptr<SVM>& _svm, std::vector<rectangle> &_faces)
@@ -230,7 +309,8 @@ int face_emotion(matrix<dlib::rgb_pixel>& _dlib_img, cv::Mat & _cv_img, shape_pr
 	for (unsigned long i = 0; i < _faces.size(); ++i)
 		shapes.push_back(_sp(_dlib_img, _faces[i]));
 
-	if (!shapes.empty()) {
+	if (!shapes.empty()) 
+	{
 		float testData[1][136];
 		float coefficient = -(_faces[0].top() - _faces[0].bottom()) / 300.0;
 		for (int i = 0; i < 68; i++) {
@@ -244,21 +324,25 @@ int face_emotion(matrix<dlib::rgb_pixel>& _dlib_img, cv::Mat & _cv_img, shape_pr
 		cv::Mat query(1, 136, CV_32FC1, testData);
 
 		if (_svm->predict(query) == 250) {
-			cv::putText(_cv_img, "Happy", cv::Point(20, 60), 3, 2, cvScalar(0, 0, 255));
-			cout << "happy" << endl;
+			return 1;   //happy
+			//cv::putText(_cv_img, "Happy", cv::Point(20, 60), 3, 2, cvScalar(0, 0, 255));
+			//cout << "happy" << endl;
 		}
 
 		if (_svm->predict(query) == 170) {
-			cv::putText(_cv_img, "Calm", cv::Point(20, 60), 3, 2, cvScalar(0, 0, 255));
-			cout << "calm" << endl;
+			return 2;    //normal
+			//cv::putText(_cv_img, "Calm", cv::Point(20, 60), 3, 2, cvScalar(0, 0, 255));
+			//cout << "calm" << endl;
 		}
 		if (_svm->predict(query) == 300) {
-			cv::putText(_cv_img, "Upset", cv::Point(20, 60), 3, 2, cvScalar(0, 0, 255));
-			cout << "upset" << endl;
+
+			return 3; // upset
+			//cv::putText(_cv_img, "Upset", cv::Point(20, 60), 3, 2, cvScalar(0, 0, 255));
+			//cout << "upset" << endl;
 		}
 
 	}
-	return XSUCESS;
+	return XFAIL;
 }
 
 
@@ -269,16 +353,17 @@ float euclidean_calculation(cv::Mat matrix_1, cv::Mat matrix_2)
 
 void search_database(std::vector<std::string> &data_dir)
 {
-	WIN32_FIND_DATA fileInfo;
+	//getAllFiles("..\\database\\", data_dir);
+	/*WIN32_FIND_DATA fileInfo;
 	HANDLE hFind;
-	string root = ".\\database\\";
-	hFind = FindFirstFile(TEXT(".\\database\\"), &fileInfo);
+	string root = "..\\database\\";
+	hFind = FindFirstFile(TEXT("..\\database\\"), &fileInfo);
 	while (FindNextFile(hFind, &fileInfo) != 0)
 	{
 		string file_name;
 		Wchar_tToString(file_name, fileInfo.cFileName);	
 		data_dir.push_back(root + file_name);
-	}
+	}*/
 
 	
 }
@@ -294,3 +379,31 @@ void Wchar_tToString(std::string& szDst, wchar_t *wchar)
 	szDst = psText;
 	delete[]psText;
 }
+
+
+void getAllFiles(string path, std::vector<string>& files, string format)
+{
+	intptr_t  hFile = 0;//文件句柄  64位下long 改为 intptr_t
+	struct _finddata_t fileinfo;//文件信息 
+	string p;
+	if ((hFile = _findfirst(p.assign(path).append("\\*" + format).c_str(), &fileinfo)) != -1) //文件存在
+	{
+		do
+		{
+			if ((fileinfo.attrib & _A_SUBDIR))//判断是否为文件夹
+			{
+				if (strcmp(fileinfo.name, ".") != 0 && strcmp(fileinfo.name, "..") != 0)//文件夹名中不含"."和".."
+				{
+					files.push_back(p.assign(path).append("\\").append(fileinfo.name)); //保存文件夹名
+					getAllFiles(p.assign(path).append("\\").append(fileinfo.name), files, format); //递归遍历文件夹
+				}
+			}
+			else
+			{
+				files.push_back(p.assign(path).append("\\").append(fileinfo.name));//如果不是文件夹，储存文件名
+			}
+		} while (_findnext(hFile, &fileinfo) == 0);
+		_findclose(hFile);
+	}
+}
+

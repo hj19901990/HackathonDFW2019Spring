@@ -23,11 +23,12 @@ private:
 	int timestamp;
 	void callback(Pic *);
 	CloudServer cloudserver;
-	Individual res_package;
+	Individual_Info res_package;
+	void sendresult();
 signals:
 	void send_img(cv::Mat input_img, int timestamp);
 public slots:
-	void recieve_thread_stat(bool is_free,Individual package);
+	void recieve_thread_stat(bool is_free, Individual_Info package);
 };
 
 
@@ -46,9 +47,9 @@ private:
 	anet_type net;
 	cv::Ptr<SVM> svm;
 	std::vector<rectangle> faces;
-	Individual detect_res;
+	Individual_Info detect_res;
 signals:
-	void send_thread_stat(bool is_free, Individual info);
+	void send_thread_stat(bool is_free, Individual_Info info);
 public slots:
 	void recieve_img(cv::Mat recieved_img, int timestamp);
 };

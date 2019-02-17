@@ -8,15 +8,13 @@ typedef struct {
 
 	int name_len;
 
-	char name[50];
+	char name[48];
 
-	int age;
+	int age;   
 
-	int gender;
+	int gender;      //1 male   2 female
 
-	int note_len;
-
-	char *note;
+	int emotion;    //happy 1  normal 2  upset 3
 
 }Individual_Info;
 
@@ -38,7 +36,6 @@ typedef struct {
 
 	int height;
 
-	char buf;
 
 }Pic_RGB_Header;
 
@@ -54,7 +51,6 @@ typedef struct {
 	int flag;
 
 	Individual_Info individual_info;
-
 }Individual_Info_Header;
 
 class Pic {
@@ -82,7 +78,7 @@ public:
 
 		buffer = new char[pic_size];
 
-		std::copy(&header->buf, &header->buf + pic_size, buffer);
+		std::memcpy(buffer, (char *)header + sizeof(Pic_RGB_Header), pic_size);
 
 	}
 	~Pic() {
@@ -102,7 +98,7 @@ public:
 
 	int gender;
 
-	std::string note;
+	int emotion;        
 
 public:
 
@@ -111,7 +107,7 @@ public:
 		name(""),
 		age(-1),
 		gender(-1),
-		note("") {
+		emotion(-1) {
 
 	}
 
@@ -120,7 +116,7 @@ public:
 		name(header->individual_info.name, header->individual_info.name_len),
 		age(header->individual_info.age),
 		gender(header->individual_info.gender),
-		note(header->individual_info.note, header->individual_info.note_len)
+		emotion(header->individual_info.emotion)
 	{}
 
 	~Individual() {

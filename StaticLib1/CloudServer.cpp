@@ -64,7 +64,7 @@ void CloudServer::run() {
 
 			int pic_size = pt_header->width * pt_header->height * 3;
 
-			int total_size = pic_size + sizeof(Pic_RGB_Header) - 1;
+			int total_size = pic_size + sizeof(Pic_RGB_Header);
 
 			char *pic_buffer = new char[total_size];
 
@@ -82,6 +82,8 @@ void CloudServer::run() {
 	
 			this->callback(&cur_pic);
 
+			delete[] pic_buffer;
+
 		}
 	}
 	
@@ -90,13 +92,15 @@ void CloudServer::run() {
 void CloudServer::send_info(int timestampt, Individual info) {
 
 	Individual_Info_Header header;
-	
+	auto m_pSSLTCPServer = (CTCPSSLServer *)ssl_server;
+
 	header.header.cmdType = PACKET_TYPE_INDIVIDUAL_INFO;
 	header.header.timestamp = timestampt;
 
 	header.individual_info.id = info.id;
 	header.individual_info.age = info.age;
 	header.individual_info.gender = info.gender;
+	header.individual_info.emotion = info.emotion;
 
 	header.individual_info.name_len = info.name.length();
 
@@ -104,7 +108,9 @@ void CloudServer::send_info(int timestampt, Individual info) {
 
 	std::copy(pname, pname + info.name.length(), header.individual_info.name);
 	
+	m_pSSLTCPServer->Send(*((ASecureSocket::SSLSocket *)this->connectedClient), (char*)&header, sizeof(Individual_Info_Header));
 
+	printf("a");
 }
 
 CloudServer::~CloudServer()

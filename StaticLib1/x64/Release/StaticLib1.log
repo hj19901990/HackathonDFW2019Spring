@@ -1,15 +1,26 @@
-﻿  stdafx.cpp
-  CloudServer.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\cloudserver.cpp(118): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+﻿  CloudServer.cpp
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\cloudserver.cpp(105): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   SecureSocket.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\securesocket.cpp(220): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
   Socket.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\socket.cpp(207): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\socket.cpp(110): warning C4267: '=': conversion from 'size_t' to 'long', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\socket.cpp(119): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\socket.cpp(155): warning C4267: '=': conversion from 'size_t' to 'long', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\socket.cpp(169): warning C4244: '=': conversion from 'const ASocket::Socket' to 'int', possible loss of data
   TCPClient.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpclient.cpp(394): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpclient.cpp(274): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpclient.cpp(323): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   TCPServer.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpserver.cpp(452): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpserver.cpp(272): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+  c:\program files (x86)\windows kits\10\include\10.0.17134.0\um\winsock2.h(1848): note: see declaration of 'inet_ntoa'
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpserver.cpp(358): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpserver.cpp(399): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   TCPSSLClient.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslclient.cpp(262): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslclient.cpp(104): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslclient.cpp(167): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslclient.cpp(224): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   TCPSSLServer.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslserver.cpp(245): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslserver.cpp(106): warning C4244: 'argument': conversion from 'ASocket::Socket' to 'int', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslserver.cpp(168): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+d:\hackathondfw2019spring\hackathondfw2019spring\staticlib1\tcpsslserver.cpp(198): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+libssl.lib(libssl-1_1-x64.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in libcrypto.lib(libcrypto-1_1-x64.dll); second definition ignored
+  StaticLib1.vcxproj -> D:\HackathonDFW2019Spring\HackathonDFW2019Spring\x64\Release\StaticLib1.lib
