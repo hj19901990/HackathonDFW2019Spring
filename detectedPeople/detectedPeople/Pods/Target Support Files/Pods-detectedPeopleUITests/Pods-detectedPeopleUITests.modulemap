@@ -1,0 +1,6 @@
+framework module Pods_detectedPeopleUITests {
+  umbrella header "Pods-detectedPeopleUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
