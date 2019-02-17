@@ -1,0 +1,5 @@
+﻿  cvgabor.cpp
+cvgabor.cpp(683): warning C4101: 'dmat': unreferenced local variable
+cvgabor.cpp(702): warning C4101: 're': unreferenced local variable
+cvgabor.cpp(702): warning C4101: 'im': unreferenced local variable
+LINK : fatal error LNK1104: cannot open file 'cxcore200.lib'
