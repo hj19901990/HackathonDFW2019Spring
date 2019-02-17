@@ -1,9 +1,1 @@
-﻿  mythread.cpp
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(24): warning C4005: 'XSUCESS': macro redefinition
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(20): note: see previous definition of 'XSUCESS'
-d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\facedetection.h(25): warning C4005: 'XFAIL': macro redefinition
-  d:\hackathondfw2019spring\hackathondfw2019spring\facerecognition\faceanalysis.h(19): note: see previous definition of 'XFAIL'
-  StaticLib1.lib(CloudServer.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
-  Generating code
-  Finished generating code
-  FaceRecognition.vcxproj -> D:\HackathonDFW2019Spring\HackathonDFW2019Spring\x64\Release\FaceRecognition.exe
+﻿
