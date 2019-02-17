@@ -56,24 +56,25 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>UNICODE;WIN32;DLIB_JPEG_SUPPORT;DLIB_PNG_SUPPORT;DLIB_JPEG_STATIC;WIN64;QT_DLL;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;WINDOWS;OPENSSL;UNICODE;WIN32;DLIB_JPEG_SUPPORT;DLIB_PNG_SUPPORT;DLIB_JPEG_STATIC;WIN64;QT_DLL;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\HackathonDFW2019Spring\HackathonDFW2019Spring\StaticLib1;C:\Program Files\OpenSSL-Win64\include;$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <SDLCheck>false</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files\OpenSSL-Win64\lib;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>qtmaind.lib;Qt5Cored.lib;opencv_world320d.lib;$(ProjectDir)..\lib\Debug\dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;qtmaind.lib;Qt5Cored.lib;opencv_world320d.lib;$(ProjectDir)..\lib\Debug\dlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <QtMoc>
-      <Define>UNICODE;WIN32;DLIB_JPEG_SUPPORT;DLIB_PNG_SUPPORT;DLIB_JPEG_STATIC;WIN64;QT_DLL;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore</IncludePath>
+      <Define>_WINDOWS;WINDOWS;OPENSSL;UNICODE;WIN32;DLIB_JPEG_SUPPORT;DLIB_PNG_SUPPORT;DLIB_JPEG_STATIC;WIN64;QT_DLL;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
+      <IncludePath>D:\HackathonDFW2019Spring\HackathonDFW2019Spring\StaticLib1;C:\Program Files\OpenSSL-Win64\include;$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
@@ -96,7 +97,7 @@
     </Link>
     <QtMoc>
       <Define>UNICODE;WIN32;WIN64;QT_DLL;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
-      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore</IncludePath>
+      <IncludePath>$(ProjectDir)..\dlib\external\zlib;$(ProjectDir)..\dlib\external\libpng;$(ProjectDir)..\;$(ProjectDir)..\dlib\external\libjpeg;.;$(QTDIR)\include;.\GeneratedFiles\$(ConfigurationName);$(QTDIR)\include\QtCore;%(AdditionalIncludeDirectories)</IncludePath>
       <OutputFile>.\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp</OutputFile>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
     </QtMoc>
@@ -112,6 +113,11 @@
     <QtMoc Include="mythread.h" />
     <ClInclude Include="faceanalysis.h" />
     <ClInclude Include="facedetection.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StaticLib1\StaticLib1.vcxproj">
+      <Project>{e4f17f42-7cac-470f-86ef-3b96c2f5e00d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

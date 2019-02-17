@@ -2,6 +2,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <opencv2/ml/ml.hpp>
 #include <dlib/image_processing/frontal_face_detector.h>
 #include <dlib/gui_widgets.h>
 #include <dlib/image_io.h>
@@ -16,6 +17,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <experimental/filesystem>
+
 
 
 #define XSUCESS 1
@@ -24,7 +27,8 @@
 
 using namespace std;
 using namespace dlib;
-
+using namespace cv::ml;
+namespace fs = std::experimental::filesystem;
 
 
 template <template <int, template<typename>class, int, typename> class block, int N, template<typename>class BN, typename SUBNET>
@@ -63,6 +67,9 @@ std::vector<matrix<rgb_pixel>> jitter_image(
 void face_detection();
 void face_recognition();
 
-int face_detection(matrix<dlib::rgb_pixel> _dlib_img, frontal_face_detector &_detector, std::vector<rectangle> &_faces);
-int face_recognition(matrix<dlib::rgb_pixel> _dlib_img, shape_predictor &sp, anet_type &net, std::vector<rectangle> &_faces);
+int face_detection(matrix<dlib::rgb_pixel>& _dlib_img, frontal_face_detector _detector, std::vector<rectangle> &_faces);
+int face_recognition(matrix<dlib::rgb_pixel>& _dlib_img, shape_predictor &sp, anet_type &net, std::vector<rectangle> &_faces);
+int face_emotion(matrix<dlib::rgb_pixel>& _dlib_img, cv::Mat & _cv_img, shape_predictor &_sp, cv::Ptr<SVM>& _svm, std::vector<rectangle> &_faces);
+void search_database(std::vector<std::string> &data_dir);
+void Wchar_tToString(std::string& szDst, wchar_t *wchar);
 float euclidean_calculation(cv::Mat matrix_1,cv::Mat matrix_2);
