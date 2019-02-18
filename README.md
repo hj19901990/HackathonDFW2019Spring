@@ -1,4 +1,4 @@
-Master Branch: Face detection & recognition algorithms
+Master Branch: Face detection & recognition algorithms \r\n
 OpenSSL Client Branch
 OpenSSL Server Branch
 Raspberry Camera Branch: video capture and UDP communication 
